@@ -1,4 +1,4 @@
-export interface IManga {
+export interface Manga {
   name: string;
   volume: string;
   price: string;
@@ -8,11 +8,11 @@ export interface IManga {
   frontImageUrl: string;
 }
 
-export interface IGroupedManga {
-  [key: string]: IManga[]
+export interface GroupedManga {
+  [key: string]: Manga[]
 };
 
-export interface ICollection {
+export interface Collection {
   name: string;
   url: string;
   frontImageUrl: string;

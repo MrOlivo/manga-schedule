@@ -1,8 +1,8 @@
 import { Icon, List } from "@raycast/api";
-import { IManga } from "../types";
+import { Manga } from "../types";
 
 interface Props {
-  manga: IManga;
+  manga: Manga;
 }
 
 export default function MangaListDetail({ manga }: Props) {
