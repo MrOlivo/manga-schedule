@@ -1,9 +1,9 @@
 import { useFetch } from "@raycast/utils";
 import { List } from "@raycast/api";
 import { useEffect, useState } from "react";
-import { IGroupedManga, IManga } from "./types";
-import { scrapeManga } from "./utils/scrapper";
-import { monthNames } from "./utils/months";
+import { IGroupedManga, IManga } from "../types";
+import { scrapeManga } from "../utils/scrapper";
+import { monthNames } from "../utils/months";
 import MangaListItem from "./MangaListItem";
 
 export default function SearchMangaList() {

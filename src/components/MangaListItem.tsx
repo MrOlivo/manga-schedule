@@ -1,6 +1,6 @@
 import { Action, ActionPanel, Icon, Image, List } from "@raycast/api";
 import DetailsView from "./DetailsView";
-import { IManga } from "./types";
+import { IManga } from "../types";
 
 interface Props {
   manga: IManga;

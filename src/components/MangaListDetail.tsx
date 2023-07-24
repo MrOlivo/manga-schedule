@@ -1,5 +1,5 @@
 import { Icon, List } from "@raycast/api";
-import { IManga } from "./types";
+import { IManga } from "../types";
 
 interface Props {
   manga: IManga;
