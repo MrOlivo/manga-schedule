@@ -8,7 +8,7 @@ export interface Manga {
   frontImageUrl: string;
 }
 
-export interface GroupedManga {
+export interface MangaList {
   [key: string]: Manga[]
 };
 
