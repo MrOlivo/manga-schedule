@@ -1,66 +1,60 @@
 import { useFetch } from "@raycast/utils";
 import { List } from "@raycast/api";
-import { useEffect, useState } from "react";
-import { GroupedManga, Manga } from "../types";
-import { scrapeManga } from "../utils/scrapper";
+import { useEffect, useMemo, useState } from "react";
+import { MangaList } from "../types";
+import { getMangaCalendar } from "../utils/scrapper";
 import { monthNames } from "../utils/months";
 import MangaListItem from "./MangaListItem";
 
 export default function SearchMangaList() {
-  const [month] = useState(monthNames[new Date().getMonth()]);
-  const [year] = useState(new Date().getFullYear());
-  const [mangaList, setMangaList] = useState<Manga[] | undefined>([]);
-  const [filteredList, setFilteredList] = useState<Manga[] | undefined>();
-  const [mangaGroupedByDate, setMangaGroupedByDate] = useState<GroupedManga | undefined>();
-  const [searchText, setSearchText] = useState("");
-  const { isLoading, data } = useFetch(
-    `https://miscomics.com.mx/calendario/manga/${month}-${year.toString()}`,
-    {
-      keepPreviousData: true,
-    }
-  );
+  const currentDate = new Date();
+  const currentMonth = monthNames[currentDate.getMonth()];
+  const currentYear = currentDate.getFullYear();
+
+  const [mangaList, setMangaList] = useState<MangaList>({});
+  const [searchText, setSearchText] = useState<string>("");
+
+  const { isLoading, data } = useFetch(`https://miscomics.com.mx/calendario/manga/${currentMonth}-${currentYear}`, {
+    keepPreviousData: true,
+  });
 
   useEffect(() => {
-    scrapeManga(String(data) || "").then((result) => {
+    getMangaCalendar(String(data) || "").then((result) => {
       setMangaList(result);
-      setFilteredList(result);
     });
-  }, []);
+  }, [data]);
 
-  useEffect(() => {
-    if (searchText) {
-      setFilteredList(mangaList?.filter(({ name }) => name.toLowerCase().includes(searchText.toLowerCase())));
-      return;
+  const filteredMangaList = useMemo(() => {
+    if (!searchText) {
+      return mangaList;
     }
-    setFilteredList(mangaList);
-  }, [searchText]);
 
-  useEffect(() => {
-    const mangaGroupedByDate: GroupedManga =
-      filteredList?.reduce(
-        (grouper: GroupedManga, manga: Manga) => ({
-          ...grouper,
-          [manga.publicationDate]: [...(grouper[manga.publicationDate] || []), manga],
-        }),
-        {}
-      ) || {};
-    setMangaGroupedByDate(mangaGroupedByDate);
-  }, [filteredList]);
+    const searchTitle = searchText.toLowerCase();
+    return Object.entries(mangaList).reduce((acc, [publicationDate, mangas]) => {
+      const filteredMangas = mangas.filter(({ name }) => name.toLowerCase().includes(searchTitle));
+      if (filteredMangas.length > 0) {
+        acc[publicationDate] = filteredMangas;
+      }
+      return acc;
+    }, {} as MangaList);
+  }, [mangaList, searchText]);
 
   return (
     <List
       isLoading={isLoading}
       onSearchTextChange={setSearchText}
-      navigationTitle={`Latest releases ${month.toUpperCase()}-${year}`}
+      navigationTitle={`Latest releases ${currentMonth.toUpperCase()}-${currentYear}`}
     >
-      {mangaGroupedByDate &&
-        Object.entries(mangaGroupedByDate).map(([date, mangaGroupedList], idx) => {
+      {filteredMangaList &&
+        Object.entries(filteredMangaList).map(([date, mangasByDate], idx) => {
           return (
-            <List.Section key={idx} title={date.toString()}>
-              {mangaGroupedList.map((manga) => (
-                <MangaListItem key={manga.name + manga.volume} manga={manga} />
-              ))}
-            </List.Section>
+            mangasByDate && (
+              <List.Section key={idx} title={date.toString()}>
+                {mangasByDate.map((manga) => (
+                  <MangaListItem key={manga.name + manga.volume} manga={manga} />
+                ))}
+              </List.Section>
+            )
           );
         })}
     </List>
