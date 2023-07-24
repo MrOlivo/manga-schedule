@@ -1,12 +1,11 @@
 import * as cheerio from 'cheerio';
-import { Collection, Manga } from '../types'
+import { Collection, Manga, MangaList } from '../types';
 
+// This work for both Calendario /calendario/manga and Colección /manga/:nombre
 export async function scrapeManga(body: string): Promise<Manga[]> {
   try {
     const $ = cheerio.load(body);
     const Shelf: Manga[] = [];
-    // Select by the 'comic' class and use the attr method to only grab the desired content
-    // This work for both Calendario and Colección
     $('div.comic').map((_idx, el) => {
       const manga: Manga = {
         name: $(el).attr('data-c')?.split(" ").slice(0, -1).join(" ") || "",
@@ -24,6 +23,19 @@ export async function scrapeManga(body: string): Promise<Manga[]> {
     console.log(error);
     return [];
   }
+}
+
+export async function getMangaCalendar(url: string): Promise<MangaList> {
+  const response = await scrapeManga(url);
+  const dataGroupedByDate: MangaList =
+    response?.reduce(
+      (grouper: MangaList, manga: Manga) => ({
+        ...grouper,
+        [manga.publicationDate]: [...(grouper[manga.publicationDate] || []), manga],
+      }),
+      {}
+    ) || {};
+  return dataGroupedByDate;
 }
 
 export async function scrapeCollections(body: string) {
