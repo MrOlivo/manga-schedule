@@ -1,5 +1,5 @@
-import SearchMangaList from "./components/SearchMangaList";
+import CurrentMonthPublications from "./commands/CurrentMonthPublications";
 
 export default function Command() {
-  return <SearchMangaList />;
+  return <CurrentMonthPublications />;
 }

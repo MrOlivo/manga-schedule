@@ -4,10 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import { MangaList } from "../types";
 import { getMangaCalendar } from "../utils/scrapper";
 import { monthNames } from "../utils/months";
-import MangaListItem from "./MangaListItem";
-import { DateDropdown } from "./DateDropdown";
+import MangaListItem from "../components/MangaListItem";
+import { DateDropdown } from "../components/DateDropdown";
 
-export default function SearchMangaList() {
+export default function CurrentMonthPublications() {
   const currentDate = new Date();
   const currentMonth = monthNames[currentDate.getMonth()];
   const currentYear = currentDate.getFullYear();
