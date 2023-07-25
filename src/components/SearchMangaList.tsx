@@ -30,12 +30,12 @@ export default function SearchMangaList() {
     }
 
     const searchTitle = searchText.toLowerCase();
-    return Object.entries(mangaList).reduce((acc, [publicationDate, mangas]) => {
+    return Object.entries(mangaList).reduce((filteredMangasByDate, [publicationDate, mangas]) => {
       const filteredMangas = mangas.filter(({ name }) => name.toLowerCase().includes(searchTitle));
       if (filteredMangas.length > 0) {
-        acc[publicationDate] = filteredMangas;
+        filteredMangasByDate[publicationDate] = filteredMangas;
       }
-      return acc;
+      return filteredMangasByDate;
     }, {} as MangaList);
   }, [mangaList, searchText]);
 
