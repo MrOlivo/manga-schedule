@@ -1,13 +1,15 @@
 import { List } from "@raycast/api";
 
-export function DateDropdown(props: { data: string[]; onDateChange: (newValue: string) => void }) {
-  const { data, onDateChange } = props;
+interface Props {
+  dateList: string[];
+  onDropdownChange: (text: string) => void;
+}
+
+export function DateDropdown({ dateList, onDropdownChange }: Props) {
   return (
-    <List.Dropdown tooltip="Select a date" storeValue={true} onChange={(value) => onDateChange(value)}>
-      <List.Dropdown.Item title="Show All" value=""/>
-      {data.map((textDate, idx) => (
-        <List.Dropdown.Item key={idx + textDate} title={textDate} value={textDate} />
-      ))}
+    <List.Dropdown tooltip="Select a date" storeValue={true} onChange={(newValue) => onDropdownChange(newValue)}>
+      <List.Dropdown.Item title="Show All" value="" />
+      {dateList && dateList.map((date, idx) => <List.Dropdown.Item key={idx + date} title={date} value={date} />)}
     </List.Dropdown>
   );
 }

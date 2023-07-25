@@ -5,6 +5,7 @@ import { MangaList } from "../types";
 import { getMangaCalendar } from "../utils/scrapper";
 import { monthNames } from "../utils/months";
 import MangaListItem from "./MangaListItem";
+import { DateDropdown } from "./DateDropdown";
 
 export default function SearchMangaList() {
   const currentDate = new Date();
@@ -13,6 +14,7 @@ export default function SearchMangaList() {
 
   const [mangaList, setMangaList] = useState<MangaList>({});
   const [searchText, setSearchText] = useState<string>("");
+  const [selectedDate, setSelectedDate] = useState<string>("");
 
   const { isLoading, data } = useFetch(`https://miscomics.com.mx/calendario/manga/${currentMonth}-${currentYear}`, {
     keepPreviousData: true,
@@ -25,38 +27,47 @@ export default function SearchMangaList() {
   }, [data]);
 
   const filteredMangaList = useMemo(() => {
-    if (!searchText) {
+    if (!searchText && !selectedDate) {
       return mangaList;
     }
 
     const searchTitle = searchText.toLowerCase();
+    const searchDate = selectedDate.toLowerCase();
     return Object.entries(mangaList).reduce((filteredMangasByDate, [publicationDate, mangas]) => {
-      const filteredMangas = mangas.filter(({ name }) => name.toLowerCase().includes(searchTitle));
+      const filteredMangas = mangas.filter(
+        ({ name, publicationDate }) =>
+          (!searchText || name.toLowerCase().includes(searchTitle)) &&
+          (!selectedDate || publicationDate.toLowerCase().includes(searchDate))
+      );
       if (filteredMangas.length > 0) {
         filteredMangasByDate[publicationDate] = filteredMangas;
       }
       return filteredMangasByDate;
     }, {} as MangaList);
-  }, [mangaList, searchText]);
+  }, [mangaList, selectedDate, searchText]);
+
+  const publicationDates: string[] = useMemo(() => {
+    return Object.keys(mangaList);
+  }, [mangaList]);
 
   return (
     <List
       isLoading={isLoading}
       onSearchTextChange={setSearchText}
       navigationTitle={`Latest releases ${currentMonth.toUpperCase()}-${currentYear}`}
+      searchBarAccessory={<DateDropdown dateList={publicationDates} onDropdownChange={setSelectedDate} />}
     >
-      {filteredMangaList &&
-        Object.entries(filteredMangaList).map(([date, mangasByDate], idx) => {
-          return (
-            mangasByDate && (
-              <List.Section key={idx} title={date.toString()}>
-                {mangasByDate.map((manga) => (
-                  <MangaListItem key={manga.name + manga.volume} manga={manga} />
-                ))}
-              </List.Section>
-            )
-          );
-        })}
+      {Object.entries(filteredMangaList).map(([date, mangasByDate], idx) => {
+        return (
+          mangasByDate && (
+            <List.Section key={idx} title={date}>
+              {mangasByDate.map((manga) => (
+                <MangaListItem key={manga.name + manga.volume} manga={manga} />
+              ))}
+            </List.Section>
+          )
+        );
+      })}
     </List>
   );
 }

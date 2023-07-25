@@ -14,3 +14,14 @@
   - Replaced redundant useEffect with useMemo for manga list filtering.
   - Used more descriptive variable names for better code readability.
   - The variable `acc` in the reduce function was renamed because wasn't descriptive.
+
+## [Second Update] - 2023-07-25
+
+- Now you can filter by dates with the new **Drowdown**.
+  - Improved filtering logic to handle both searchText and selectedDate filters
+  - Optimized publicationDates variable with useMemo
+  - Simplified conditional rendering of List.Section
+
+In this version, significant improvements were made to the SearchMangaList component. The filtering logic was enhanced to simultaneously handle both searchText and selectedDate filters, allowing for more flexible and accurate results.
+
+Additionally, the publicationDates variable was optimized using useMemo, ensuring that it only recalculates when the mangaList changes. The conditional rendering of List.Section was simplified, resulting in cleaner and more concise code.
