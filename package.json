@@ -12,8 +12,14 @@
   "commands": [
     {
       "name": "index",
-      "title": "Search Manga Publications",
-      "description": "Template for showing a static list and a detail view",
+      "title": "Latest Publications",
+      "description": "See the current month's releases.",
+      "mode": "view"
+    },
+    {
+      "name": "collections",
+      "title": "Browse Publications",
+      "description": "Browse through all manga collections published in Mexico.",
       "mode": "view"
     }
   ],

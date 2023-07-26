@@ -25,3 +25,11 @@
 In this version, significant improvements were made to the SearchMangaList component. The filtering logic was enhanced to simultaneously handle both searchText and selectedDate filters, allowing for more flexible and accurate results.
 
 Additionally, the publicationDates variable was optimized using useMemo, ensuring that it only recalculates when the mangaList changes. The conditional rendering of List.Section was simplified, resulting in cleaner and more concise code.
+
+## [Third Update] - 2023-07-26
+
+- New command `collection` for browsing all publications.
+- Now there are three views available:
+  - Current month schedule (list).
+  - **[New]** All manga collections published in Mexico (grid)
+  - **[New]** All manga in a collection (list)

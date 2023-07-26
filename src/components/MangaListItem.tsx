@@ -39,6 +39,13 @@ export default function MangaListItem({ manga }: Props) {
                 shortcut={{ modifiers: ["cmd"], key: "enter" }}
               />
             )}
+            {manga.editorial.includes("Mangaline") && (
+              <Action.OpenInBrowser
+                title="Mangaline México"
+                url={`https://mangaline.com.mx/tienda/?product_cat&s=${getNormalizedParameter(manga.name, "+")}&post_type=product`}
+                shortcut={{ modifiers: ["cmd"], key: "enter" }}
+              />
+            )}
             <Action.OpenInBrowser
               title="Sanborns"
               url={`https://www.sanborns.com.mx/resultados?query=${getNormalizedParameter(manga.name, "%2520")}`}
