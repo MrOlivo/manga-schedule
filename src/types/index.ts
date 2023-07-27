@@ -17,3 +17,7 @@ export interface Collection {
   url: string;
   frontImageUrl: string;
 }
+
+export interface Publisher {
+  [key: string]: { editorial: string; storeUrl: string };
+}
