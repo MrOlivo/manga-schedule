@@ -7,10 +7,9 @@
 
 A [Raycast](https://raycast.com/) to see all collections published in Mexico: mangas, comics and other collectibles in one place [Mis Comics MX](https://miscomics.com.mx/).
 
-Choose between 3 views in the settings:
-  - list (simple): results listed wih minimal information
-  - list (detailed): have a sidebar with additional details
-  - grid: results displayed as cards, with big image.
+Choose between 2 commands:
+  - Latest Publication: See the current month's releases.
+  - Browse Publications: Browse through all manga collections published in Mexico.
 
 ### Additional details
 
