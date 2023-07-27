@@ -33,3 +33,7 @@ Additionally, the publicationDates variable was optimized using useMemo, ensurin
   - Current month schedule (list).
   - **[New]** All manga collections published in Mexico (grid)
   - **[New]** All manga in a collection (list)
+
+## [Minor Update] - 2023-07-27
+
+- Now you can search by Editorial in `Current month schedule` command.
