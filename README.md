@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/command-icon.png" height="68">
+  <img src="assets/command-icon.png" height="128">
   <h1 align="center">Mis Comics MX</h1>
 </p>
 
