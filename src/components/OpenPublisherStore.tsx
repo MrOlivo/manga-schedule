@@ -9,9 +9,6 @@ interface Props {
 
 export function OpenPublisherStore({ publisher, title, storeUrl }: Props) {
   return (
-    <Action.OpenInBrowser
-      title={publisher}
-      url={storeUrl.replace("{param}", getNormalizedParameter(title, "+"))}
-    />
+    <Action.OpenInBrowser title={publisher} url={storeUrl.replace("{param}", getNormalizedParameter(title, "+"))} />
   );
 }

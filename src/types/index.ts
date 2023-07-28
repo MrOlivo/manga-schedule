@@ -9,8 +9,8 @@ export interface Manga {
 }
 
 export interface MangaList {
-  [key: string]: Manga[]
-};
+  [key: string]: Manga[];
+}
 
 export interface Collection {
   name: string;

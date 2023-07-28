@@ -36,8 +36,8 @@ export default function CurrentMonthPublications() {
     return Object.entries(mangaList).reduce((filteredMangasByDate, [publicationDate, mangas]) => {
       const filteredMangas = mangas.filter(
         ({ name, publicationDate, editorial }) =>
-        (!searchText || (name + editorial).toLowerCase().includes(searchTitle)) &&
-        (!selectedDate || publicationDate.toLowerCase().includes(searchDate))
+          (!searchText || (name + editorial).toLowerCase().includes(searchTitle)) &&
+          (!selectedDate || publicationDate.toLowerCase().includes(searchDate))
       );
       if (filteredMangas.length > 0) {
         filteredMangasByDate[publicationDate] = filteredMangas;
