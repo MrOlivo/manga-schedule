@@ -11,14 +11,6 @@ Choose between 2 commands:
   - Latest Publication: See the current month's releases.
   - Browse Publications: Browse through all manga collections published in Mexico.
 
-### Additional details
-
-[WIP]
-
-### About the API
-
-[WIP]
-
 ---
 
 No more of having to go to the site and search or typing the name on a search engine. Enjoy!
