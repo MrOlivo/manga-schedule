@@ -1,12 +1,14 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "manga-schedule",
-  "title": "Mis Comics MX",
+  "name": "manga-calendar",
+  "title": "Manga Mexico",
   "description": "Show a calendar with the latest manga releases of Mexican editorials.",
   "icon": "command-icon.png",
   "author": "mrolivo",
   "categories": [
-    "Fun"
+    "Fun",
+    "News",
+    "Web"
   ],
   "license": "MIT",
   "commands": [

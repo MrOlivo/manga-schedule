@@ -37,3 +37,10 @@ Additionally, the publicationDates variable was optimized using useMemo, ensurin
 ## [Minor Update] - 2023-07-27
 
 - Now you can search by Editorial in `Current month schedule` command.
+
+## [Minor Update] - 2023-07-28
+
+- **[New]** Change extension title `Mis Comics MX` to `Comics Mexico``
+- **[New]** Change extension name `manga-schedule` to `manga-calendar`
+- **[New]** Extension icon was added;
+- **[New]** Screenshots were added;
