@@ -21,7 +21,7 @@ export default function CurrentMonthPublications() {
       navigationTitle={`${collectionList.length} Manga collections were found`}
       isLoading={isLoading}
       columns={5}
-      inset={Grid.Inset.Small}
+      inset={Grid.Inset.Zero}
       searchText={searchText}
       onSearchTextChange={setSearchText}
       filtering={true}
