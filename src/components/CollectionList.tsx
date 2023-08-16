@@ -4,6 +4,7 @@ import MangaListItem from "./MangaListItem";
 import { useEffect, useState } from "react";
 import { getMangaCollection } from "../utils/scrapper";
 import { List } from "@raycast/api";
+import { nanoid } from 'nanoid'
 
 interface Props {
   url: string;
@@ -22,8 +23,8 @@ export function CollectionList({ url }: Props) {
 
   return (
     <List isLoading={isLoading} searchText={searchText} onSearchTextChange={setSearchText} filtering>
-      {mangaList.map((manga, idx) => (
-        <MangaListItem key={idx + manga.volume} manga={manga} />
+      {mangaList.map((manga) => (
+        <MangaListItem key={nanoid()} manga={manga} />
       ))}
     </List>
   );
