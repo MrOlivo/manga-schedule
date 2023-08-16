@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Collection } from "../types";
 import { scrapeCollections } from "../utils/scrapper";
 import CollectionGridItem from "../components/CollectionGridItem";
+import usePagination from "../hooks/usePagination";
 
 export default function CurrentMonthPublications() {
   const [collectionList, setCollectionList] = useState<Collection[]>([]);
@@ -11,10 +12,19 @@ export default function CurrentMonthPublications() {
   const { isLoading, data } = useFetch("https://miscomics.com.mx/manga", {
     keepPreviousData: true,
   });
+  const { paginatedData, totalPages, setPage } = usePagination(collectionList);
 
   useEffect(() => {
     scrapeCollections(String(data) || "").then((result) => setCollectionList(result));
   }, [data]);
+
+  const handlePageChange = (newValue: string) => setPage(Number(newValue) || 1);
+
+  const renderDropdownItems = () => {
+    return Array(totalPages)
+      .fill(null)
+      .map((_, idx) => <Grid.Dropdown.Item title={`Page ${idx + 1}`} value={String(idx + 1)} key={idx} />);
+  };
 
   return (
     <Grid
@@ -25,8 +35,13 @@ export default function CurrentMonthPublications() {
       searchText={searchText}
       onSearchTextChange={setSearchText}
       filtering={true}
+      searchBarAccessory={
+        <Grid.Dropdown tooltip="Buscar" onChange={handlePageChange}>
+          {renderDropdownItems()}
+        </Grid.Dropdown>
+      }
     >
-      {collectionList.map((collection, idx) => (
+      {paginatedData.map((collection, idx) => (
         <CollectionGridItem key={idx + collection.name} collection={collection} />
       ))}
     </Grid>
