@@ -4,6 +4,7 @@ import MangaListItem from "./MangaListItem";
 import { useEffect, useState } from "react";
 import { getMangaCollection } from "../utils/scrapper";
 import { List } from "@raycast/api";
+import { generateKey } from "../utils/generateKey";
 
 interface Props {
   url: string;
@@ -29,8 +30,8 @@ export function CollectionList({ url, title }: Props) {
       onSearchTextChange={setSearchText}
       filtering
     >
-      {mangaList.map((manga, idx) => (
-        <MangaListItem key={idx + manga.volume} manga={manga} />
+      {mangaList.map((manga) => (
+        <MangaListItem key={generateKey()} manga={manga} />
       ))}
     </List>
   );

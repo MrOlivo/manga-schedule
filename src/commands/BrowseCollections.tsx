@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Collection } from "../types";
 import { scrapeCollections } from "../utils/scrapper";
 import CollectionGridItem from "../components/CollectionGridItem";
+import { generateKey } from "../utils/generateKey";
 
 export default function CurrentMonthPublications() {
   const [collectionList, setCollectionList] = useState<Collection[]>([]);
@@ -26,8 +27,8 @@ export default function CurrentMonthPublications() {
       filtering={true}
     >
       <Grid.Section title={`${collectionList.length} Manga collections were found`}>
-        {collectionList.map((collection, idx) => (
-          <CollectionGridItem key={idx + collection.name} collection={collection} />
+        {collectionList.map((collection) => (
+          <CollectionGridItem key={generateKey()} collection={collection} />
         ))}
       </Grid.Section>
     </Grid>
