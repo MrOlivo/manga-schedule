@@ -13,7 +13,10 @@ export default function CollectionGridItem({ collection: { name, url, frontImage
       content={{ source: frontImageUrl, fallback: Color.Blue }}
       actions={
         <ActionPanel>
-          <Action.Push title={name} target={<CollectionListView title={name} url={"https://miscomics.com.mx" + url} />} />
+          <Action.Push
+            title={name}
+            target={<CollectionListView title={name} url={"https://miscomics.com.mx" + url} />}
+          />
         </ActionPanel>
       }
     />

@@ -60,12 +60,9 @@ export default function CurrentMonthPublications() {
       {Object.entries(filteredMangaList).map(([date, mangasByDate]) => {
         return (
           mangasByDate && (
-            <List.Section
-              key={generateKey()}
-              title={date.includes("00") ? "No Date" : date}
-            >
+            <List.Section key={generateKey()} title={date.includes("00") ? "No Date" : date}>
               {mangasByDate.map((manga) => (
-                <MangaListItem key={(generateKey())} manga={manga} />
+                <MangaListItem key={generateKey()} manga={manga} />
               ))}
             </List.Section>
           )
