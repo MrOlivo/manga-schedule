@@ -11,7 +11,7 @@ interface Props {
   title: string;
 }
 
-export function CollectionList({ url, title }: Props) {
+export function CollectionListView({ url, title }: Props) {
   const { isLoading, data } = useFetch(url);
   const [mangaList, setMangaList] = useState<Manga[]>([]);
   const [searchText, setSearchText] = useState<string>("");
