@@ -20,8 +20,8 @@ export default function CurrentMonthPublications() {
   return (
     <Grid
       isLoading={isLoading}
-      columns={5}
-      inset={Grid.Inset.Small}
+      columns={6}
+      aspectRatio="2/3"
       searchText={searchText}
       onSearchTextChange={setSearchText}
       filtering={true}
