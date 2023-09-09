@@ -14,4 +14,4 @@ Discover the vibrant world of Japanese manga and American & European comics effo
 
 ### Disclaimer
 
-_This extension is independently developed and is not officially endorsed by or affiliated with Mis Comics MX. Enjoy the convenience of exploring Mexican manga and comics at your fingertips, courtesy of **Manga Mexico Explorer**._
+_This extension is independently developed and is not officially endorsed by or affiliated with [Mis Comics MX](https://miscomics.com.mx/). Enjoy the convenience of exploring Mexican manga and comics at your fingertips, courtesy of **[Manga Mexico](https://www.raycast.com/mrolivo/manga-calendar)**._
