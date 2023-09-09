@@ -4,13 +4,14 @@ import MangaListItem from "./MangaListItem";
 import { useEffect, useState } from "react";
 import { getMangaCollection } from "../utils/scrapper";
 import { List } from "@raycast/api";
-import { nanoid } from 'nanoid'
+import { generateKey } from "../utils/generateKey";
 
 interface Props {
   url: string;
+  title: string;
 }
 
-export function CollectionList({ url }: Props) {
+export function CollectionListView({ url, title }: Props) {
   const { isLoading, data } = useFetch(url);
   const [mangaList, setMangaList] = useState<Manga[]>([]);
   const [searchText, setSearchText] = useState<string>("");
@@ -22,9 +23,15 @@ export function CollectionList({ url }: Props) {
   }, [data]);
 
   return (
-    <List isLoading={isLoading} searchText={searchText} onSearchTextChange={setSearchText} filtering>
+    <List
+      isLoading={isLoading}
+      searchText={searchText}
+      navigationTitle={`Viewing: ${title}`}
+      onSearchTextChange={setSearchText}
+      filtering
+    >
       {mangaList.map((manga) => (
-        <MangaListItem key={nanoid()} manga={manga} />
+        <MangaListItem key={generateKey()} manga={manga} />
       ))}
     </List>
   );
