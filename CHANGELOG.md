@@ -1,5 +1,10 @@
 # Comics Calendar Changelog
 
+## Minor Update - 2023-09-09
+
+- fix: function inside `BrowseCollections.tsx` had the wrong name.
+- refactor: `Manga` and `Collection` interfaces has their own id.
+
 ## Minor Update - 2023-09-07
 
 - Added a random string generator function to prevent unexpected behaviors caused by keys.

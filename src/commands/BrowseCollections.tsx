@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Collection } from "../types";
 import { scrapeCollections } from "../utils/scrapper";
 import CollectionGridItem from "../components/CollectionGridItem";
-import { generateKey } from "../utils/generateKey";
 
 export default function BrowseCollections() {
   const [collectionList, setCollectionList] = useState<Collection[]>([]);
@@ -28,7 +27,7 @@ export default function BrowseCollections() {
     >
       <Grid.Section title={`${collectionList.length} Manga collections were found`}>
         {collectionList.map((collection) => (
-          <CollectionGridItem key={generateKey()} collection={collection} />
+          <CollectionGridItem key={collection.id} collection={collection} />
         ))}
       </Grid.Section>
     </Grid>
