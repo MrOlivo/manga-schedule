@@ -6,7 +6,7 @@ import { scrapeCollections } from "../utils/scrapper";
 import CollectionGridItem from "../components/CollectionGridItem";
 import { generateKey } from "../utils/generateKey";
 
-export default function CurrentMonthPublications() {
+export default function BrowseCollections() {
   const [collectionList, setCollectionList] = useState<Collection[]>([]);
   const [searchText, setSearchText] = useState<string>("");
   const { isLoading, data } = useFetch("https://miscomics.com.mx/manga", {
