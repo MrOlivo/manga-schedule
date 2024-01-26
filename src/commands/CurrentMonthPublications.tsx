@@ -35,7 +35,10 @@ export default function CurrentMonthPublications() {
     const searchTitle = searchText.toLowerCase();
     const searchDate = selectedDate.toLowerCase();
     return Object.entries(publicationsList).reduce(
-      (filteredPublicationsByDate: GraphicPublicationList, [publicationDate, publications]: [string, GraphicPublication[]]) => {
+      (
+        filteredPublicationsByDate: GraphicPublicationList,
+        [publicationDate, publications]: [string, GraphicPublication[]]
+      ) => {
         const filteredMangas = publications.filter(
           ({ name, publicationDate, editorial }) =>
             (!searchText || (name + editorial).toLowerCase().includes(searchTitle)) &&
