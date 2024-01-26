@@ -1,12 +1,12 @@
-import { useFetch } from "@raycast/utils";
+import { DateDropdown } from "@components/DateDropdown";
+import { MangaListItem } from "@components/MangaListItem";
 import { List } from "@raycast/api";
+import { useFetch } from "@raycast/utils";
+import { MangaList } from "@types";
+import { generateKey } from "@utils/generateKey";
+import { monthNames } from "@utils/months";
+import { getMangaCalendar } from "@utils/scrapper";
 import { useEffect, useMemo, useState } from "react";
-import { MangaList } from "../types";
-import { getMangaCalendar } from "../utils/scrapper";
-import { monthNames } from "../utils/months";
-import MangaListItem from "../components/MangaListItem";
-import { DateDropdown } from "../components/DateDropdown";
-import { generateKey } from "../utils/generateKey";
 
 export default function CurrentMonthPublications() {
   const currentDate = new Date();

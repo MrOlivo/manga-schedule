@@ -1,7 +1,7 @@
+import DetailsView from "@components/DetailsView";
+import { OpenPublisherStore } from "@components/OpenPublisherStore";
 import { Action, ActionPanel, Color, Icon, Image, List } from "@raycast/api";
-import DetailsView from "./DetailsView";
-import { Manga, Publisher } from "../types";
-import { OpenPublisherStore } from "./OpenPublisherStore";
+import { Manga, Publisher } from "@types";
 
 const publishers: Publisher = {
   "Panini Comics México - Manga": {
@@ -26,7 +26,7 @@ interface Props {
   manga: Manga;
 }
 
-export default function MangaListItem({ manga }: Props) {
+export function MangaListItem({ manga }: Props) {
   const { editorial, storeUrl } = publishers[manga.editorial];
   return (
     <List.Item

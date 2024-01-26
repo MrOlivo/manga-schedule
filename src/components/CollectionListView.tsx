@@ -1,9 +1,9 @@
-import { useFetch } from "@raycast/utils";
-import { Manga } from "../types";
-import MangaListItem from "./MangaListItem";
-import { useEffect, useState } from "react";
-import { getMangaCollection } from "../utils/scrapper";
+import { MangaListItem } from "@components/MangaListItem";
 import { List } from "@raycast/api";
+import { useFetch } from "@raycast/utils";
+import { Manga } from "@types";
+import { getMangaCollection } from "@utils/scrapper";
+import { useEffect, useState } from "react";
 
 interface Props {
   url: string;

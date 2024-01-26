@@ -1,9 +1,9 @@
+import CollectionGridItem from "@components/CollectionGridItem";
 import { Grid } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
+import { Collection } from "@types";
+import { scrapeCollections } from "@utils/scrapper";
 import { useEffect, useState } from "react";
-import { Collection } from "../types";
-import { scrapeCollections } from "../utils/scrapper";
-import CollectionGridItem from "../components/CollectionGridItem";
 
 export default function BrowseCollections() {
   const [collectionList, setCollectionList] = useState<Collection[]>([]);

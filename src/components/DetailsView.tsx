@@ -1,5 +1,5 @@
 import { Detail } from "@raycast/api";
-import { Manga } from "../types";
+import { Manga } from "@types";
 
 interface Props {
   manga: Manga;

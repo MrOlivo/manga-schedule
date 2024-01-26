@@ -1,6 +1,6 @@
+import { Collection, Manga, MangaList } from "@types";
+import { generateKey } from "@utils/generateKey";
 import * as cheerio from "cheerio";
-import { Collection, Manga, MangaList } from "../types";
-import { generateKey } from "./generateKey";
 
 // This work for both Calendario /calendario/manga and Colección /manga/:nombre
 export async function scrapeManga(body: string): Promise<Manga[]> {

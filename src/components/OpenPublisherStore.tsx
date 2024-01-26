@@ -1,5 +1,5 @@
 import { Action } from "@raycast/api";
-import { normalizeURL } from "../utils/normalizeUrl";
+import { normalizeURL } from "@utils/normalizeUrl";
 
 interface Props {
   publisher: string;
