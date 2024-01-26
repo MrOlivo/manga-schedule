@@ -19,9 +19,15 @@
       "mode": "view"
     },
     {
-      "name": "collections",
-      "title": "Browse Publications",
+      "name": "manga",
+      "title": "Browse Manga Publications",
       "description": "Browse through all manga collections published in Mexico.",
+      "mode": "view"
+    },
+    {
+      "name": "comic",
+      "title": "Browse Comics Publications",
+      "description": "Browse through all comic collections published in Mexico.",
       "mode": "view"
     }
   ],

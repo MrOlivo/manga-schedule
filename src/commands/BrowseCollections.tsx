@@ -5,10 +5,14 @@ import { Collection } from "@types";
 import { scrapeCollections } from "@utils/scrapper";
 import { useEffect, useState } from "react";
 
-export default function BrowseCollections() {
+interface BrowseCollectionsProps {
+  baseUrl: string;
+}
+
+export default function BrowseCollections({ baseUrl }: BrowseCollectionsProps) {
   const [collectionList, setCollectionList] = useState<Collection[]>([]);
   const [searchText, setSearchText] = useState<string>("");
-  const { isLoading, data } = useFetch("https://miscomics.com.mx/manga", {
+  const { isLoading, data } = useFetch(baseUrl, {
     keepPreviousData: true,
   });
 
