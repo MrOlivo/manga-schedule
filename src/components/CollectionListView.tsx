@@ -1,7 +1,7 @@
 import { ListItem } from "@components/ListItem";
 import { List } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
-import { Manga } from "@types";
+import { GraphicPublication } from "@types";
 import { getMangaCollection } from "@utils/scrapper";
 import { useEffect, useState } from "react";
 
@@ -12,13 +12,13 @@ interface Props {
 
 export function CollectionListView({ url, title }: Props) {
   const { isLoading, data } = useFetch(url);
-  const [mangaList, setMangaList] = useState<Manga[]>([]);
+  const [publicationsList, setPublicationsList] = useState<GraphicPublication[]>([]);
   const [searchText, setSearchText] = useState<string>("");
-  const [showingDetail, setShowingDetail] = useState<boolean>(false)
+  const [showingDetail, setShowingDetail] = useState<boolean>(false);
 
   useEffect(() => {
     if (data) {
-      getMangaCollection(String(data)).then((result) => setMangaList(result));
+      getMangaCollection(String(data)).then((result) => setPublicationsList(result));
     }
   }, [data]);
 
@@ -31,8 +31,15 @@ export function CollectionListView({ url, title }: Props) {
       onSearchTextChange={setSearchText}
       filtering
     >
-      {mangaList.map((manga: Manga) => {
-        return <ListItem key={manga.id} manga={manga} isShowingDetail={showingDetail} handleAction={setShowingDetail} />
+      {publicationsList.map((publication: GraphicPublication) => {
+        return (
+          <ListItem
+            key={publication.id}
+            publication={publication}
+            isShowingDetail={showingDetail}
+            handleAction={setShowingDetail}
+          />
+        );
       })}
     </List>
   );

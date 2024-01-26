@@ -29,7 +29,7 @@ export default function BrowseCollections({ baseUrl }: BrowseCollectionsProps) {
       onSearchTextChange={setSearchText}
       filtering={true}
     >
-      <Grid.Section title={`${collectionList.length} Manga collections were found`}>
+      <Grid.Section title={`${collectionList.length} collections were found`}>
         {collectionList.map((collection) => (
           <CollectionGridItem key={collection.id} collection={collection} />
         ))}

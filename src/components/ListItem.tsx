@@ -1,26 +1,24 @@
 import DetailsView from "@components/ItemDetail";
 import { OpenPublisherStore } from "@components/OpenPublisherStore";
 import { Action, ActionPanel, Color, Icon, Image, List } from "@raycast/api";
-import { Manga } from "@types";
+import { GraphicPublication } from "@types";
 
 interface Props {
-  manga: Manga;
+  publication: GraphicPublication;
   isShowingDetail: boolean;
   handleAction: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
-export function ListItem({ manga, isShowingDetail: showingDetail, handleAction }: Props) {
+export function ListItem({ publication, isShowingDetail: showingDetail, handleAction }: Props) {
   const props: Partial<List.Item.Props> = showingDetail
     ? {
-      detail: (
-        <DetailsView manga={manga} />
-      ),
-    }
-    : { accessories: [{ icon: Icon.Coins }, { text: `$${manga.price}.00` }] };
+        detail: <DetailsView publication={publication} />,
+      }
+    : { accessories: [{ icon: Icon.Coins }, { text: `$${publication.price}.00` }] };
   return (
     <List.Item
-      title={`${manga.name} #${manga.volume}`}
-      icon={{ source: manga.frontImageUrl, mask: Image.Mask.Circle, fallback: Color.Blue }}
+      title={`${publication.name} #${publication.volume}`}
+      icon={{ source: publication.frontImageUrl, mask: Image.Mask.Circle, fallback: Color.Blue }}
       {...props}
       actions={
         <ActionPanel>
@@ -32,12 +30,12 @@ export function ListItem({ manga, isShowingDetail: showingDetail, handleAction }
           <ActionPanel.Submenu title="Search in...">
             <OpenPublisherStore
               publisher="Sanborns"
-              title={manga.name}
+              title={publication.name}
               storeUrl="https://www.sanborns.com.mx/resultados?query={param}"
             />
             <OpenPublisherStore
               publisher="Buscalibre México"
-              title={manga.name}
+              title={publication.name}
               storeUrl="https://www.buscalibre.com.mx/libros/search?q={param}"
             />
           </ActionPanel.Submenu>

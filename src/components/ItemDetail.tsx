@@ -1,23 +1,23 @@
 import { List } from "@raycast/api";
-import { Manga } from "@types";
+import { GraphicPublication } from "@types";
 
 interface Props {
-  manga: Manga;
+  publication: GraphicPublication;
 }
 
-export default function ItemDetail ({ manga }: Props) {
+export default function ItemDetail({ publication }: Props) {
   const markdown = `
-  ## ${manga.name} #${manga.volume}
-  ![](${manga.frontImageUrl})`;
+  ## ${publication.name} #${publication.volume}
+  ![](${publication.frontImageUrl})`;
 
   return (
     <List.Item.Detail
       markdown={markdown}
       metadata={
         <List.Item.Detail.Metadata>
-          <List.Item.Detail.Metadata.Label title="Publication Date" text={manga.publicationDate} />
-          <List.Item.Detail.Metadata.Label title="Publisher" text={manga.editorial} />
-          <List.Item.Detail.Metadata.Label title="Price" text={`$${manga.price}.00`} />
+          <List.Item.Detail.Metadata.Label title="Publication Date" text={publication.publicationDate} />
+          <List.Item.Detail.Metadata.Label title="Publisher" text={publication.editorial} />
+          <List.Item.Detail.Metadata.Label title="Price" text={`$${publication.price}.00`} />
         </List.Item.Detail.Metadata>
       }
     />
