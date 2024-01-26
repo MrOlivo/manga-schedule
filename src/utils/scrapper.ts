@@ -59,7 +59,7 @@ export async function scrapeCollections(body: string) {
       };
       Shelf.push(collection);
     });
-    return Shelf.filter((item) => item.url.includes("manga"));
+    return Shelf;
   } catch (error) {
     console.log(error);
     return [];
