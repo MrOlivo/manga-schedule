@@ -5,7 +5,7 @@ interface Props {
   manga: Manga;
 }
 
-export default function ({ manga }: Props) {
+export default function ItemDetail ({ manga }: Props) {
   const markdown = `
   ## ${manga.name} #${manga.volume}
   ![](${manga.frontImageUrl})`;

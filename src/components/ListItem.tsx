@@ -1,4 +1,4 @@
-import DetailsView from "@components/DetailsView";
+import DetailsView from "@components/ItemDetail";
 import { OpenPublisherStore } from "@components/OpenPublisherStore";
 import { Action, ActionPanel, Color, Icon, Image, List } from "@raycast/api";
 import { Manga } from "@types";
@@ -9,7 +9,7 @@ interface Props {
   handleAction: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
-export function MangaListItem({ manga, isShowingDetail: showingDetail, handleAction }: Props) {
+export function ListItem({ manga, isShowingDetail: showingDetail, handleAction }: Props) {
   const props: Partial<List.Item.Props> = showingDetail
     ? {
       detail: (

@@ -1,5 +1,5 @@
 import { DateDropdown } from "@components/DateDropdown";
-import { MangaListItem } from "@components/MangaListItem";
+import { ListItem } from "@components/ListItem";
 import { List } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { MangaList } from "@types";
@@ -62,7 +62,7 @@ export default function CurrentMonthPublications() {
           mangasByDate && (
             <List.Section key={generateKey()} title={date.includes("00") ? "No Date" : date}>
               {mangasByDate.map((manga) => (
-                <MangaListItem key={manga.id} manga={manga} />
+                <ListItem key={manga.id} manga={manga} isShowingDetail handleAction={() => false}/>
               ))}
             </List.Section>
           )

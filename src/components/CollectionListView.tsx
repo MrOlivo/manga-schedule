@@ -1,5 +1,5 @@
-import { MangaListItem } from "@components/MangaListItem";
-import { Action, ActionPanel, List } from "@raycast/api";
+import { ListItem } from "@components/ListItem";
+import { List } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { Manga } from "@types";
 import { getMangaCollection } from "@utils/scrapper";
@@ -32,7 +32,7 @@ export function CollectionListView({ url, title }: Props) {
       filtering
     >
       {mangaList.map((manga: Manga) => {
-        return <MangaListItem key={manga.id} manga={manga} isShowingDetail={showingDetail} handleAction={setShowingDetail} />
+        return <ListItem key={manga.id} manga={manga} isShowingDetail={showingDetail} handleAction={setShowingDetail} />
       })}
     </List>
   );
