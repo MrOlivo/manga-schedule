@@ -1,44 +1,35 @@
 import DetailsView from "@components/DetailsView";
 import { OpenPublisherStore } from "@components/OpenPublisherStore";
 import { Action, ActionPanel, Color, Icon, Image, List } from "@raycast/api";
-import { Manga, Publisher } from "@types";
-
-const publishers: Publisher = {
-  "Panini Comics México - Manga": {
-    editorial: "Panini México",
-    storeUrl: "https://tiendapanini.com.mx/catalogsearch/result/?q={param}",
-  },
-  "Editorial Kamite - Manga": {
-    editorial: "Kamite",
-    storeUrl: "https://kamite.com.mx/buscar?controller=search&poscats=0&s={param}",
-  },
-  "Penguin Random House": {
-    editorial: "Distrito Manga México",
-    storeUrl: "https://www.penguinlibros.com/mx/?mot_q={param}#",
-  },
-  Mangaline: {
-    editorial: "Mangaline México",
-    storeUrl: "https://mangaline.com.mx/tienda/?product_cat&s={param}&post_type=product",
-  },
-};
+import { Manga } from "@types";
 
 interface Props {
   manga: Manga;
+  isShowingDetail: boolean;
+  handleAction: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
-export function MangaListItem({ manga }: Props) {
-  const { editorial, storeUrl } = publishers[manga.editorial];
+export function MangaListItem({ manga, isShowingDetail: showingDetail, handleAction }: Props) {
+  const props: Partial<List.Item.Props> = showingDetail
+    ? {
+      detail: (
+        <DetailsView manga={manga} />
+      ),
+    }
+    : { accessories: [{ icon: Icon.Coins }, { text: `$${manga.price}.00` }] };
   return (
     <List.Item
       title={`${manga.name} #${manga.volume}`}
-      subtitle={manga.editorial}
       icon={{ source: manga.frontImageUrl, mask: Image.Mask.Circle, fallback: Color.Blue }}
-      accessories={[{ icon: Icon.Coins }, { text: `$${manga.price}.00` }]}
+      {...props}
       actions={
         <ActionPanel>
-          <Action.Push title="Details" target={<DetailsView manga={manga} />} />
+          <Action
+            title="Toggle Detailed View"
+            onAction={() => handleAction((prev: boolean) => !prev)}
+            icon={Icon.AppWindowSidebarLeft}
+          />
           <ActionPanel.Submenu title="Search in...">
-            <OpenPublisherStore publisher={editorial} title={manga.name} storeUrl={storeUrl} />
             <OpenPublisherStore
               publisher="Sanborns"
               title={manga.name}

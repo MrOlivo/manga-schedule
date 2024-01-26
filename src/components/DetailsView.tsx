@@ -1,4 +1,4 @@
-import { Detail } from "@raycast/api";
+import { List } from "@raycast/api";
 import { Manga } from "@types";
 
 interface Props {
@@ -11,15 +11,14 @@ export default function ({ manga }: Props) {
   ![](${manga.frontImageUrl})`;
 
   return (
-    <Detail
+    <List.Item.Detail
       markdown={markdown}
-      navigationTitle={`${manga.name} #${manga.volume}`}
       metadata={
-        <Detail.Metadata>
-          <Detail.Metadata.Label title="Publication Date" text={manga.publicationDate} />
-          <Detail.Metadata.Label title="Publisher" text={manga.editorial} />
-          <Detail.Metadata.Label title="Price" text={`$${manga.price}.00`} />
-        </Detail.Metadata>
+        <List.Item.Detail.Metadata>
+          <List.Item.Detail.Metadata.Label title="Publication Date" text={manga.publicationDate} />
+          <List.Item.Detail.Metadata.Label title="Publisher" text={manga.editorial} />
+          <List.Item.Detail.Metadata.Label title="Price" text={`$${manga.price}.00`} />
+        </List.Item.Detail.Metadata>
       }
     />
   );

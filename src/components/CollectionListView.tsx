@@ -1,5 +1,5 @@
 import { MangaListItem } from "@components/MangaListItem";
-import { List } from "@raycast/api";
+import { Action, ActionPanel, List } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { Manga } from "@types";
 import { getMangaCollection } from "@utils/scrapper";
@@ -14,6 +14,7 @@ export function CollectionListView({ url, title }: Props) {
   const { isLoading, data } = useFetch(url);
   const [mangaList, setMangaList] = useState<Manga[]>([]);
   const [searchText, setSearchText] = useState<string>("");
+  const [showingDetail, setShowingDetail] = useState<boolean>(false)
 
   useEffect(() => {
     if (data) {
@@ -23,15 +24,16 @@ export function CollectionListView({ url, title }: Props) {
 
   return (
     <List
+      isShowingDetail={showingDetail}
       isLoading={isLoading}
       searchText={searchText}
       navigationTitle={`Viewing: ${title}`}
       onSearchTextChange={setSearchText}
       filtering
     >
-      {mangaList.map((manga) => (
-        <MangaListItem key={manga.id} manga={manga} />
-      ))}
+      {mangaList.map((manga: Manga) => {
+        return <MangaListItem key={manga.id} manga={manga} isShowingDetail={showingDetail} handleAction={setShowingDetail} />
+      })}
     </List>
   );
 }
